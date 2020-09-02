@@ -21,12 +21,12 @@ public class ImageUtil {
     /**
      * @param thumbnail  上传的文件
      * @param targetAddr 文件存储路径
-     * @return
+     * @return 生成文件名
      */
     public static String generateThumbnail(CommonsMultipartFile thumbnail, String targetAddr) {
         String realFileName = getRandomFileName();
         String extension = getFileExtension(thumbnail);
-        mkdeDirPath(targetAddr);
+        makeDirPath(targetAddr);
         String relativeAddr = targetAddr + realFileName + extension;
         File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
         try {
@@ -40,9 +40,7 @@ public class ImageUtil {
     }
 
     /**
-     * 生成随机文件名
-     *
-     * @return
+     * @return 随机文件名
      */
     public static String getRandomFileName() {
         // 获取随机数
@@ -53,9 +51,8 @@ public class ImageUtil {
 
     /**
      * 获取文件扩展名
-     *
-     * @param thumbnail
-     * @return
+     * @param thumbnail 上传文件
+     * @return 文件扩展名
      */
 
     public static String getFileExtension(CommonsMultipartFile thumbnail) {
@@ -67,9 +64,9 @@ public class ImageUtil {
     /**
      * 创建目标路径
      *
-     * @param targetAddr
+     * @param targetAddr 目标路径
      */
-    public static void mkdeDirPath(String targetAddr) {
+    public static void makeDirPath(String targetAddr) {
         String realFilePath = PathUtil.getImgBasePath() + targetAddr;
         File dirPath = new File(realFilePath);
         // 递归创建文件夹
